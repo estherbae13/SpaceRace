@@ -30,8 +30,6 @@ namespace SpaceRace
         int p1Score = 0;
         int p2Score = 0;
 
-        string win;
-
         List<int> asteroidRY = new List<int>();
         List<int> asteroidRX = new List<int>();
         List<int> asteroidLY = new List<int>();
@@ -46,13 +44,14 @@ namespace SpaceRace
         bool sDown = false;
         bool wDown = false;
 
+        string gameState = "waiting";
+        string win;
+
         Random randGen = new Random();
         int randValue = 0;
 
         SolidBrush pinkBrush = new SolidBrush(Color.LightCoral);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
-
-        string gameState = "waiting";
 
         SoundPlayer collision = new SoundPlayer(Properties.Resources.collision);
         SoundPlayer score = new SoundPlayer(Properties.Resources.score);
@@ -165,13 +164,13 @@ namespace SpaceRace
 
             if (randValue < 7)
             {
-                asteroidLX.Add(0);
-                asteroidLY.Add(randGen.Next(10, this.Height - 50));
+                asteroidRX.Add(800);
+                asteroidRY.Add(randGen.Next(10, this.Height - 50));
             }
             else if (randValue < 14)
             {
-                asteroidRX.Add(800);
-                asteroidRY.Add(randGen.Next(10, this.Height - 50));
+                asteroidLX.Add(0);
+                asteroidLY.Add(randGen.Next(10, this.Height - 50));
             }
 
             //move asteroids
@@ -249,12 +248,12 @@ namespace SpaceRace
             if (p1Score == 3)
             {
                 gameState = "over";
-                win = "player 1 Wins!";
+                win = "player 1 wins!";
             }
             else if (p2Score == 3)
             {
                 gameState = "over";
-                win = "player 2 Wins!";
+                win = "player 2 wins!";
             }
 
             Refresh();
